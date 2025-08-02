@@ -10,6 +10,7 @@ def test_attempt_newton_failure(monkeypatch):
         from nonlinear_solvers.solvers import ConvergenceError
         raise ConvergenceError
     monkeypatch.setattr('nonlinear_solvers.solvers.newton_raphson', mockreturn)
-    assert math.isclose(solve(lambda x: np.cos(x) - x, lambda x: -np.sin(x) - 1,
-                              0, 1, 1e-5, 15, 20), 0.7390899658203125), \
+    assert math.isclose(solve(
+        lambda x: np.cos(x) - x, lambda x: -np.sin(x) - 1,
+        0, 1, 1e-5, 15, 20), 0.7390899658203125), \
         "expected fallback to bisection solution"
